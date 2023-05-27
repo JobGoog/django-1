@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,7 +77,15 @@ TEMPLATES = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.trottleing.AnonRateThrottle',
+        'rest_framework.trottleing.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_CLASSES':{
+        'user': '20/minute',
+        'anon': '10/minute',
+    },
 }
 
 WSGI_APPLICATION = 'api_with_restrictions.wsgi.application'
@@ -91,6 +100,8 @@ DATABASES = {
         'NAME': 'netology_classified_ads',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': 'ipad',
     }
 }
 
@@ -132,3 +143,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# if socket.gethostname() == "roro4":
+#     from base_settings import *
