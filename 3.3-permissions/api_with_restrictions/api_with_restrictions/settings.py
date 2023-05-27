@@ -80,9 +80,9 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.trottleing.AnonRateThrottle',
-        'rest_framework.trottleing.UserRateThrottle'
+        'rest_framework.trottleing.UserRateThrottle',
     ],
-    'DEFAULT_THROTTLE_CLASSES':{
+    'DEFAULT_THROTTLE_RATES':{
         'user': '20/minute',
         'anon': '10/minute',
     },
