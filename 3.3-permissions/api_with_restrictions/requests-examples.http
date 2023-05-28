@@ -1,6 +1,8 @@
 # примеры API-запросов
 
-@baseUrl = https://localhost:8000/api
+
+# Ошибка возникала на этом этапе, из-за протокала https
+@baseUrl = http://localhost:8000/api
 
 # получение объявлений
 GET {{baseUrl}}/advertisements/

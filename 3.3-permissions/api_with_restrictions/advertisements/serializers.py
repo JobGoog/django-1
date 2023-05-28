@@ -43,7 +43,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         
 
         if not self.instance or data.get('status') == 'OPEN':
-            if Advertisement.objects.filter(creator=user).count() > 10:
+            if Advertisement.objects.filter(creator=user, status = 'OPEN').count() > 10:
                 raise serializers.ValidationError(f'User {user} can\'t create more then 10 objects.')
 
         return data
